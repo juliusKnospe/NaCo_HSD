@@ -25,6 +25,8 @@
 
 
 ## 1. Übertragungssysteme
+-Stochastik Basics (Kapitel 2)
+
 
 ### Blockschaltbilder
 
@@ -38,19 +40,29 @@
 >
 >
 >**XOR Formel**
->$ y(k) =  x_1(k)*\overline{x_2(k)}+ x_2(k)*\overline{x_1(k)}$
+>$$ y(k) =  x_1(k)*\overline{x_2(k)}+ x_2(k)*\overline{x_1(k)}$$
 >
 >**AND Formel**
->$ y(k) =  x_1(k)*x_2(k)$
+>$$ y(k) =  x_1(k)*x_2(k)$$
 >**OR Formel**
->$ y(k) =  x_1(k)+x_2(k)$
+>$$ y(k) =  x_1(k)+x_2(k)$$
+>
+>
+>**Ausgabe Berechnen**
+bsp. prob(x(k)=1)=q=0.75 
+> |x(k)|x(k-1)|...|x(k-n)|y<sub>1</sub>(k)|y<sub>2</sub>(k)|P|
+>|---|---|---|---|---|---|---|
+>|0|0|-|0|||(1-q)³|
+>|0|0|-|1|||(1-q)²*q|
+>|0|1|-|0|||(1-q)²*q|
+>|0|1|-|1|||(1-q)*q²|
+>|...|...|...|...|
 
 
 
 
 
 
--Stochastik Basics (Kapitel 2)
 
 ### Wahrscheinlichkeiten
 
@@ -76,7 +88,10 @@
 
 
 ### Entropie
-> $$ H(x) = - \sum_{i=1}^{q}P(x_{i})*log_{N}() $$
+
+>Ergebnis in Bit/Zeichen
+> $$ H(x) = - \sum_{i=1}^{q}P(x_{i})*log_{N}(P(x_{i})
+) $$
 
 ### Informationsgehalt
 > $$ I(x_{i})=-log_{N}(P(x_{i})) $$ 
@@ -161,16 +176,16 @@ Lempel-Ziv-Welch-Algorithmus
 
 
 #### Quantisierungsstufen $\Delta$
->$ \Delta = \frac{x_{max}-x_{¬min}}{i} $
+>$$ \Delta = \frac{x_{max}-x_{¬min}}{i} $$
 
 **Quantisierungsintervalle nach P($x_i$)**
 für Symmetrische Codierung
->$\int_{0}^{x_i}p(x)dx=w; mit w =Wahrscheinlichkeit/AnzahlStufen$
+>$$\int_{0}^{x_i}p(x)dx=w; mit w =Wahrscheinlichkeit/AnzahlStufen$$
 
 
 
 Quantisierungsfehler 
-> $e(k) = x(k)-s(nT)$
+> $$e(k) = x(k)-s(nT)$$
 
 
 
@@ -194,22 +209,22 @@ lich ist
 
 |Variabel|Beschreibung|
 |---|---|
-|$d_{min}$ |minimale Hammingdistanz (Abstand)|
-|$e_d$ |Erkennbare Bitumwandlung|
-|$e_c$ |Korrigierbare BitumwandPlung |
-|k|Datenstellen|
-|n|Codewortstellen|
-|m|Kontrollstellen|
-|Z|Anzahl Codewörter je Kugel|
-|w|Anzahl einsen|
-|$\vec{e}$| Fehlervektor|
-|$\vec{c}$| Codevektor|
-|$\vec{c_r}$| Codevektor recived|
-|$\vec{E}$| Einheitsmatrix|
-|$\vec{P}$| Parity Matrix|
-|$\vec{G}$| Generatormatrix|
-|$\vec{H^{T}}$| Ḱontrollmatrix|
-|$\vec{S}$| Syndrom (Fehler)|
+|$$d_{min}$$ |minimale Hammingdistanz (Abstand)|
+|$$e_d$$ |Erkennbare Bitumwandlung|
+|$$e_c$$ |Korrigierbare BitumwandPlung |
+|$$k$$|Datenstellen|
+|$$n$$|Codewortstellen|
+|$$m$$|Kontrollstellen|
+|$$Z$$|Anzahl Codewörter je Kugel|
+|$$w$$|Anzahl einsen|
+|$$\vec{e}$$| Fehlervektor|
+|$$\vec{c}$$| Codevektor|
+|$$\vec{c_r}$$| Codevektor recived|
+|$$\vec{E}$$| Einheitsmatrix|
+|$$\vec{P}$$| Parity Matrix|
+|$$\vec{G}$$| Generatormatrix|
+|$$\vec{H^{T}}$$| Ḱontrollmatrix|
+|$$\vec{S}$$| Syndrom (Fehler)|
 
 
 
@@ -217,8 +232,8 @@ lich ist
 
 
 
->$ d_{min} = e_d-1 $
->$ d_{min} = 2*e_c+1 $
+>$$ d_{min} = e_d-1 $$
+>$$ d_{min} = 2*e_c+1 $$
 
 
 ### Blockcode
@@ -237,19 +252,19 @@ Die Generatormatrix $\vec{G}$ ist definiert durch
 
 Die Kontrollmatrix $\vec{H}$ ist definiert durch :
 
->$
+>$$
 >\vec{H}=\begin{bmatrix}
 >\vec{E} |&\vec{P}\\
 >\end{bmatrix}
->$
+>$$
 
 Damit gibt sich der Praktische Zusammenhang
 
->$\vec{G}*\vec{H} = \vec{0}$
+>$$\vec{G}*\vec{H} = \vec{0}$$
 
 warum das ganze?
 Einfache Fehlererkennung und Berechnung mit:
->mit $ \vec{c_r}=\vec{c} +\vec{e}$
-
->$\vec{S} = \vec{c_r}*\vec{H^{T}} = (\vec{c}+\vec{e})*\vec{H^{T}} =
-\vec{c}*\vec{H^{T}}+\vec{e} *\vec{H^{T}} = \vec{e} *\vec{H^{T}}$
+>mit $$ \vec{c_r}=\vec{c} +\vec{e}$$
+>gilt
+>$$\vec{S} = \vec{c_r}*\vec{H^{T}} = (\vec{c}+\vec{e})*\vec{H^{T}} =
+\vec{c}*\vec{H^{T}}+\vec{e} *\vec{H^{T}} = \vec{e} *\vec{H^{T}}$$
