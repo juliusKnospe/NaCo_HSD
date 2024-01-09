@@ -26,6 +26,29 @@
 
 ## 1. Übertragungssysteme
 
+### Blockschaltbilder
+
+> |Block|Beschreibung|
+>|----------|---------|
+>|T|Verzögerungsglied|
+>|=1|XOR|
+>|&|AND|
+>|x(k)|Eingang|
+>|y(k)|Ausgang|
+>
+>
+>**XOR Formel**
+>$ y(k) =  x_1(k)*\overline{x_2(k)}+ x_2(k)*\overline{x_1(k)}$
+>
+>**AND Formel**
+>$ y(k) =  x_1(k)*x_2(k)$
+>**OR Formel**
+>$ y(k) =  x_1(k)+x_2(k)$
+
+
+
+
+
 
 -Stochastik Basics (Kapitel 2)
 
@@ -120,7 +143,7 @@ $$ r_C = 1-\frac{H}{\bar{n}} $$
 Ein Code ist dann und nur dann eindeutig decodierbar, wenn kein Codewort linker Teil eines
 anderen Codewortes (Prefix) ist.
 
-dann folgt H(x) <= n < H(X)+1
+dann folgt $H(x) <= n < H(X)+1$
 Fano Code...
 Huffman Code (Meist besser als Fano)
 
@@ -137,17 +160,17 @@ Lempel-Ziv-Welch-Algorithmus
 
 
 
-**Quantisierungsstufen $\Delta$**
-$ \Delta = \frac{x_{max}-x_{¬min}}{i} $
+#### Quantisierungsstufen $\Delta$
+>$ \Delta = \frac{x_{max}-x_{¬min}}{i} $
 
 **Quantisierungsintervalle nach P($x_i$)**
 für Symmetrische Codierung
-$\int_{0}^{x_i}p(x)dx=w; mit w =Wahrscheinlichkeit/AnzahlStufen$
+>$\int_{0}^{x_i}p(x)dx=w; mit w =Wahrscheinlichkeit/AnzahlStufen$
 
 
 
 Quantisierungsfehler 
-e(k) = x(k)-s(nT)
+> $e(k) = x(k)-s(nT)$
 
 
 
@@ -186,25 +209,47 @@ lich ist
 |$\vec{P}$| Parity Matrix|
 |$\vec{G}$| Generatormatrix|
 |$\vec{H^{T}}$| Ḱontrollmatrix|
+|$\vec{S}$| Syndrom (Fehler)|
 
 
 
 
 
 
-$ d_{min} = e_d-1 $
-$ d_{min} = 2*e_c+1 $
+
+>$ d_{min} = e_d-1 $
+>$ d_{min} = 2*e_c+1 $
 
 
 ### Blockcode
 
-$$ 
-\vec{G}=\begin{bmatrix}
-\vec{P} |&\vec{E}\\
-\end{bmatrix}
-= \begin{bmatrix}
-P_{11} & P_{12} & ... & 1 & 0 & 0 & 0\\
-P_{21} & P_{22} & ... & 0 & 1 & 0 & 0\\
-P_{31} & P_{32} & ... & 0 & 0 & 1 & 0\\
-P_{41} & P_{42} & ... & 0 & 0 & 0 & 1\\
-\end{bmatrix}$$
+Die Generatormatrix $\vec{G}$ ist definiert durch 
+>$$ 
+>\vec{G}=\begin{bmatrix}
+>\vec{P} |&\vec{E}\\
+>\end{bmatrix}
+>= \begin{bmatrix}
+>P_{11} & P_{12} & ... & 1 & 0 & 0 & 0\\
+>P_{21} & P_{22} & ... & 0 & 1 & 0 & 0\\
+>P_{31} & P_{32} & ... & 0 & 0 & 1 & 0\\
+>P_{41} & P_{42} & ... & 0 & 0 & 0 & 1\\
+>\end{bmatrix}$$
+
+Die Kontrollmatrix $\vec{H}$ ist definiert durch :
+
+>$
+>\vec{H}=\begin{bmatrix}
+>\vec{E} |&\vec{P}\\
+>\end{bmatrix}
+>$
+
+Damit gibt sich der Praktische Zusammenhang
+
+>$\vec{G}*\vec{H} = \vec{0}$
+
+warum das ganze?
+Einfache Fehlererkennung und Berechnung mit:
+>mit $ \vec{c_r}=\vec{c} +\vec{e}$
+
+>$\vec{S} = \vec{c_r}*\vec{H^{T}} = (\vec{c}+\vec{e})*\vec{H^{T}} =
+\vec{c}*\vec{H^{T}}+\vec{e} *\vec{H^{T}} = \vec{e} *\vec{H^{T}}$
